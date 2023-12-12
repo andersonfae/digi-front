@@ -15,6 +15,7 @@ export const QuizProvider = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [showResults, setShowResults] = useState(false);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +44,28 @@ export const QuizProvider = ({ children }) => {
   }
 
   function handleNextQuestion() {
+    // Adicione a opção selecionada ao userAnswers
+    setUserAnswers((prevAnswers) => {
+      const currentQuestion = getCurrentQuestion();
+      const existingAnswerIndex = prevAnswers.findIndex(
+        (answer) => answer.questionId === currentQuestion._id
+      );
+
+      // Crie uma cópia do estado anterior e ajuste apenas a parte necessária
+      const updatedAnswers = [...prevAnswers];
+      if (existingAnswerIndex !== -1) {
+        updatedAnswers[existingAnswerIndex] = {
+          questionId: currentQuestion._id,
+          selectedOptionIndex: selectedOptionIndex,
+        };
+      }
+
+      return updatedAnswers;
+    });
+
+    // Reinicie a opção selecionada
+    setSelectedOptionIndex(undefined);
+
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   }
 

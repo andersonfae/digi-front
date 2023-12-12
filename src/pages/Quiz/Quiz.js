@@ -17,6 +17,7 @@ function Quiz() {
     handleSendQuiz,
     setShowResults,
     showResults,
+    selectedOptionIndex,
   } = useQuizContext();
 
   const location = useLocation();
@@ -123,14 +124,15 @@ function Quiz() {
                   ]?.text}
               </p>
             )}
-            {currentQuestionIndex < questions.questions.length - 1 && (
-              <button
-                onClick={handleNextQuestion}
-                className="text-white text-base sm:text-lg font-bold uppercase px-4 sm:px-7 py-2 sm:py-5 bg-violet-700"
-              >
-                Continuar
-              </button>
-            )}
+            {currentQuestionIndex < questions.questions.length - 1 &&
+              userAnswers[currentQuestionIndex] !== undefined && (
+                <button
+                  onClick={handleNextQuestion}
+                  className="text-white text-base sm:text-lg font-bold uppercase px-4 sm:px-7 py-2 sm:py-5 bg-violet-700"
+                >
+                  Continuar
+                </button>
+              )}
             {currentQuestionIndex > 0 && (
               <button
                 onClick={handlePrevQuestion}
