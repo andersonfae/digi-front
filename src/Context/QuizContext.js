@@ -35,22 +35,22 @@ export const QuizProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  const getCurrentQuestion = () => {
+  function getCurrentQuestion() {
     if (questions && questions.questions && questions.questions.length > 0) {
       return questions.questions[currentQuestionIndex];
     }
     return null;
-  };
+  }
 
-  const handleNextQuestion = () => {
+  function handleNextQuestion() {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-  };
+  }
 
-  const handlePrevQuestion = () => {
+  function handlePrevQuestion() {
     setCurrentQuestionIndex((prevIndex) => Math.max(0, prevIndex - 1));
-  };
+  }
 
-  const handleAnswer = (selectedOptionIndex) => {
+  function handleAnswer(selectedOptionIndex) {
     const currentQuestion = getCurrentQuestion();
 
     if (currentQuestion) {
@@ -60,19 +60,12 @@ export const QuizProvider = ({ children }) => {
         );
 
         if (existingAnswerIndex !== -1) {
-          // Se a pergunta já foi respondida, substitua a resposta existente
           const updatedAnswers = [...prevAnswers];
           updatedAnswers[existingAnswerIndex].selectedOptionIndex =
             selectedOptionIndex;
 
-          console.log("Novo valor de userAnswers:", updatedAnswers);
           return updatedAnswers;
         } else {
-          // Se a pergunta ainda não foi respondida, adicione uma nova resposta
-          console.log("Novo valor de userAnswers:", [
-            ...prevAnswers,
-            { questionId: currentQuestion._id, selectedOptionIndex },
-          ]);
           return [
             ...prevAnswers,
             { questionId: currentQuestion._id, selectedOptionIndex },
@@ -80,9 +73,9 @@ export const QuizProvider = ({ children }) => {
         }
       });
     }
-  };
+  }
 
-  const handleSendQuiz = async (name, navigate) => {
+  async function handleSendQuiz(name, navigate) {
     try {
       const answersToSend = userAnswers.map((answer) => ({
         _questionID: answer.questionId,
@@ -102,16 +95,16 @@ export const QuizProvider = ({ children }) => {
     } catch (error) {
       console.error("Erro ao enviar as respostas:", error);
     }
-  };
+  }
 
-  const resetQuiz = () => {
+  function resetQuiz() {
     console.log("Before reset:", currentQuestionIndex, userAnswers);
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
     console.log("After reset:", currentQuestionIndex, userAnswers);
     navigate("/");
     window.location.reload();
-  };
+  }
 
   const value = {
     questions,

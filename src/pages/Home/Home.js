@@ -22,6 +22,8 @@ function Home() {
         <input
           type="text"
           placeholder="Seu nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="input p-1 w-full sm:w-96 border-2 border-purple-700 text-black"
         />
       </div>

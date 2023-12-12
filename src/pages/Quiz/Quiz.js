@@ -24,7 +24,7 @@ function Quiz() {
 
   const [quizVisible, setQuizVisible] = useState(true);
 
-  const sendQuiz = async () => {
+  async function sendQuiz() {
     try {
       if (userAnswers[currentQuestionIndex] !== undefined) {
         setShowResults(true);
@@ -37,7 +37,7 @@ function Quiz() {
     } catch (error) {
       console.error("Erro ao enviar as respostas:", error);
     }
-  };
+  }
 
   function resetAndShowQuiz() {
     setQuizVisible(true);
@@ -54,7 +54,7 @@ function Quiz() {
     window.open(linkWhatsapp, "_blank");
   }
 
-  const calculateResultMessage = () => {
+  function calculateResultMessage() {
     const majorityA = userAnswers.filter(
       (answer) => answer.selectedOptionIndex === 0
     ).length;
@@ -72,7 +72,7 @@ function Quiz() {
     } else {
       return "Você está no caminho certo! Com seu entusiasmo e conhecimento, só precisa de um empurrãozinho da Digi para atingir o topo.";
     }
-  };
+  }
 
   return (
     <div
@@ -114,7 +114,6 @@ function Quiz() {
             {currentQuestionIndex + 1}/5
           </h1>
           <div className="text-white">
-            {console.log("Valor de userAnswers:", userAnswers)}
             {userAnswers.length > 0 && currentQuestion && (
               <p>
                 Você respondeu:{" "}
