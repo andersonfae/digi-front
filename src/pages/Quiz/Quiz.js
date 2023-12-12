@@ -120,15 +120,6 @@ function Quiz() {
             {currentQuestionIndex + 1}/5
           </h1>
           <div className="text-white">
-            {userAnswers.length > 0 && currentQuestion && (
-              <p>
-                Você respondeu:{" "}
-                {currentQuestion.options &&
-                  currentQuestion.options[
-                    userAnswers[currentQuestionIndex]?.selectedOptionIndex
-                  ]?.text}
-              </p>
-            )}
             {currentQuestionIndex < questions.questions.length - 1 &&
               userAnswers[currentQuestionIndex] !== undefined && (
                 <button
