@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-function Footer() {
+function Footer({ showResults }) {
+  const location = useLocation();
+  const [isQuizPage, setIsQuizPage] = useState(false);
+
+  useEffect(() => {
+    setIsQuizPage(location.pathname === "/quiz");
+  }, [location.pathname]);
+
   return (
     <footer
-      className={`flex p-4 mb-5 justify-between fixed bottom-0 items-center h-16 w-11/12 text-white`}
+      className={`flex p-5 mb-5 justify-between fixed bottom-0 items-center h-16 w-[98%] ${
+        showResults ? "text-black" : "text-white"
+      }`}
     >
       <div className="flex items-center space-x-2">
         <span className="white-text text-base">Digi® – </span>
-        <span className="gray-text text-base">
+        <span className="gray-text text-base opacity-60">
           Boosting people for performance
         </span>
       </div>

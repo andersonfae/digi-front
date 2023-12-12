@@ -13,12 +13,14 @@ function Home() {
   };
 
   return (
-    <div className="text-center p-4 sm:p-20 bg-black h-full min-h-screen border-8 border-[#FF0145]">
-      <Hero />
-      <h1 className="text-2xl sm:text-4xl mb-4 sm:mb-10 text-white mt-10">
+    <div className="text-center bg-black h-full min-h-screen border-[20px] border-[#FF0145]">
+      <div className="p-10">
+        <Hero />
+      </div>
+      <h1 className="text-2xl sm:text-4xl mb-8 text-white">
         Como posso te chamar?
       </h1>
-      <div className="input-container mb-4 sm:mb-10">
+      <div className="input-container mb-8">
         <input
           type="text"
           placeholder="Seu nome"
