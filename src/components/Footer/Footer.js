@@ -22,7 +22,13 @@ function Footer({ showResults }) {
         </span>
       </div>
       <div className="">
-        <img src="/logoFundo.svg" alt="Logo" className="w-14 h-14" />
+        <a
+          href="https://www.digi.ag/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/logoFundo.svg" alt="Logo" className="w-14 h-14" />
+        </a>
       </div>
     </footer>
   );
