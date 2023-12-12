@@ -44,14 +44,12 @@ export const QuizProvider = ({ children }) => {
   }
 
   function handleNextQuestion() {
-    // Adicione a opção selecionada ao userAnswers
     setUserAnswers((prevAnswers) => {
       const currentQuestion = getCurrentQuestion();
       const existingAnswerIndex = prevAnswers.findIndex(
         (answer) => answer.questionId === currentQuestion._id
       );
 
-      // Crie uma cópia do estado anterior e ajuste apenas a parte necessária
       const updatedAnswers = [...prevAnswers];
       if (existingAnswerIndex !== -1) {
         updatedAnswers[existingAnswerIndex] = {
@@ -63,10 +61,8 @@ export const QuizProvider = ({ children }) => {
       return updatedAnswers;
     });
 
-    // Reinicie a opção selecionada
     setSelectedOptionIndex(undefined);
 
-    // Defina a próxima pergunta como a atual
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   }
 
