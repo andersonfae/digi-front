@@ -18,6 +18,7 @@ function Quiz() {
     setShowResults,
     showResults,
     selectedOptionIndex,
+    setSelectedOptionIndex,
   } = useQuizContext();
 
   const location = useLocation();
@@ -102,7 +103,11 @@ function Quiz() {
                         type="radio"
                         name="answer"
                         className=""
-                        onChange={() => handleAnswer(index)}
+                        checked={selectedOptionIndex === index}
+                        onChange={() => {
+                          handleAnswer(index);
+                          setSelectedOptionIndex(index); // Adicione esta linha para atualizar o estado
+                        }}
                       />
                       <span className="ml-2">{option.text}</span>
                     </label>

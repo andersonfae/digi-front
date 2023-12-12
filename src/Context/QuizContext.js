@@ -66,6 +66,7 @@ export const QuizProvider = ({ children }) => {
     // Reinicie a opção selecionada
     setSelectedOptionIndex(undefined);
 
+    // Defina a próxima pergunta como a atual
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   }
 
@@ -143,6 +144,8 @@ export const QuizProvider = ({ children }) => {
     resetQuiz,
     showResults,
     setShowResults,
+    selectedOptionIndex,
+    setSelectedOptionIndex,
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
